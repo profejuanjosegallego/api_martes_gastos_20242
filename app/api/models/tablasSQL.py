@@ -20,7 +20,7 @@ class Gastos(Base):
     __tablename__ = 'gastos'
     id = Column(Integer, primary_key = True, autoincrement = True)
     descripcion = Column(String(200))
-    categoria = **********************
+    categoria = ""
     valor = Column(Float)
     fecha = Column(Date)
 
@@ -31,19 +31,27 @@ class Categorias(Base):
     descripcion = Column(String(200))
     fotoCategoria = Column(String(200))
 
-class Ingreso(Base):
-    __tablename__ = 'Ingreso'
+class Ingresos(Base):
+    __tablename__ = 'Ingresos'
     id = Column(Integer, primary_key = True, autoincrement = True)
     valor = Column(Float)
     descripcion = Column(String(200))
     fecha = Column(Date)
 
-class Prestamo(Base):
-    __tablename__ = 'prestamo'
+class Prestamos(Base):
+    __tablename__ = 'prestamos'
     id = Column(Integer, primary_key = True, autoincrement = True)
     valor = Column(Float)
     descripcion = Column(String(200))
     fecha = Column(Date)
+    tiempo = Column(Integer)
     porcentaje = Column(Float)
     
-
+class Inversiones(Base):
+    __tablename__ = 'inversiones'
+    id = Column(Integer, primary_key = True, autoincrement = True)
+    valor = Column(Float)
+    descripcion = Column(String(200))
+    fecha = Column(Date)
+    tiempo = Column(Integer)
+    porcentaje = Column(Float)

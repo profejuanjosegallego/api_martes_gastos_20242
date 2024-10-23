@@ -17,6 +17,6 @@ dataBaseConnection=f"mysql+mysqlconnector://{userName}:{userPassword}@{server}:{
 engine = create_engine(dataBaseConnection)
 
 #Abrir la sesion con la base de datos
-SessionLocal = sessionmaker(autocommit = False, autoflush = False, bind = engine)
+sessionLocal = sessionmaker(autocommit = False, autoflush = False, bind = engine)
 
 
