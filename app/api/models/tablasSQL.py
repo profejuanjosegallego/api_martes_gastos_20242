@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey
-<<<<<<< HEAD
 from sqlalchemy.orm import relationship 
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -13,6 +12,8 @@ class Usuario(Base):
     __tablename__ = 'usuarios'
     id = Column(Integer, primary_key = True, autoincrement = True)
     nombres = Column(String(50))
+    email = Column(String(80))
+    password = Column(String(70))
     fechaNacimiento = Column(Date)
     ubicacion = Column(String(100))
     metaAhorro = Column(Float)
@@ -24,11 +25,12 @@ class Gastos(Base):
     categoria = ""
     valor = Column(Float)
     fecha = Column(Date)
+    id_usuario = Column(Integer, ForeignKey("usuario.id"))
 
 class Categorias(Base):
     __tablename__ = 'Categorias'
     id = Column(Integer, primary_key = True, autoincrement = True)
-    nombres = Column(String(30))
+    nombreCategoria = Column(String(30))
     descripcion = Column(String(200))
     fotoCategoria = Column(String(200))
 
@@ -38,63 +40,3 @@ class Ingresos(Base):
     valor = Column(Float)
     descripcion = Column(String(200))
     fecha = Column(Date)
-
-class Prestamos(Base):
-    __tablename__ = 'prestamos'
-    id = Column(Integer, primary_key = True, autoincrement = True)
-    valor = Column(Float)
-    descripcion = Column(String(200))
-    fecha = Column(Date)
-    tiempo = Column(Integer)
-    porcentaje = Column(Float)
-    
-class Inversiones(Base):
-    __tablename__ = 'inversiones'
-    id = Column(Integer, primary_key = True, autoincrement = True)
-    valor = Column(Float)
-    descripcion = Column(String(200))
-    fecha = Column(Date)
-    tiempo = Column(Integer)
-    porcentaje = Column(Float)
-=======
-
-from sqlalchemy.orm import relationship
-
-from sqlalchemy.ext.declarative import declarative_base
-
-#LLamado a la base para crear tablas
-Base=declarative_base()
-
-#DEFINICION DE LAS TABLAS DE MI MODELO
-
-#usuario
-class Usuario(Base):
-    __tablename__='usuarios'
-    id=Column(Integer, primary_key=True, autoincrement=True)
-    nombres=Column(String(50))
-    fechaNacimiento=Column(Date)
-    ubicacion=Column(String(100))
-    metaAhorro=Column(Float)
-
-class Gasto(Base):
-    #id
-    #descripcion
-    #categoria *********
-    #valor
-    #fecha
-    pass
-    
-class Categoria(Base):
-    #id
-    #nombre
-    #descripcion
-    #fotoCategoria
-    pass
-
-class Ingreso(Base):
-    #id
-    #valor
-    #descripcion
-    #fecha
-    pass
->>>>>>> e56970047174ac8f6b145be43202dd767a975555

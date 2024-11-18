@@ -5,6 +5,8 @@ from datetime import date
 #modelo de transferencia de datos
 class UsuarioDTOPeticion(BaseModel):
     nombres: str
+    email: str
+    password: str
     fechaNacimiento: date
     ubicacion: str
     metaAhorro: float
@@ -44,7 +46,7 @@ class CategoriasDTOPeticion(BaseModel):
 
 class CategoriasDTORespuesta(BaseModel):
     id: int
-    nombres: str
+    nombreCategoria: str
     descripcion: str
     fotoCategoria: str
     class Config:

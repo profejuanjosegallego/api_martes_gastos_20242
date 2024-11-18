@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-from app.database.configuration import engine
+from app.database.configuration import Engine
 from app.api.routes.endpoints import rutas
 from app.api.models.tablasSQL import Base
 
 from starlette.responses import RedirectResponse
 from starlette.middleware.cors import CORSMiddleware
 
-Base.metadata.create_all(bind = engine)
+Base.metadata.create_all(bind = Engine)
 
 app = FastAPI()
 
@@ -18,8 +18,6 @@ app.add_middleware(
     allow_methods = ["*"],
     allow_headers = ["*"]
 )
-
-app = FastAPI()
 
 @app.get("/")
 def main():

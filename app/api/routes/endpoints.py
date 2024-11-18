@@ -7,10 +7,8 @@ from app.api.DTO.dtos import UsuarioDTOPeticion, UsuarioDTORespuesta
 from app.api.DTO.dtos import GastosDTOPeticion, GastosDTORespuesta
 from app.api.DTO.dtos import CategoriasDTOPeticion, CategoriasDTORespuesta
 from app.api.DTO.dtos import IngresosDTOPeticion, IngresosDTORespuesta
-from app.api.DTO.dtos import InversionesDTOPeticion, InversionesDTORespuesta
-from app.api.DTO.dtos import PrestamosDTOPeticion, PrestamosDTORespuesta
-from app.api.models.tablasSQL import Usuario, Gastos,Categorias, Ingresos, Inversiones, Prestamos
-from app.database.configuration import sessionLocal, engine
+from app.api.models.tablasSQL import Usuario, Gastos,Categorias, Ingresos
+from app.database.configuration import sessionLocal, Engine
 
 rutas = APIRouter()
 
@@ -34,6 +32,8 @@ def guardarUsuario(datosUsuario: UsuarioDTOPeticion, database: Session = Depends
     try:
         usuario = Usuario(
             nombres = datosUsuario.nombres,
+            email = datosUsuario.email,
+            password = datosUsuario.password,
             fechaNacimiento = datosUsuario.fechaNacimiento,
             ubicacion = datosUsuario.ubicacion,
             metaAhorro = datosUsuario.metaAhorro
@@ -46,7 +46,7 @@ def guardarUsuario(datosUsuario: UsuarioDTOPeticion, database: Session = Depends
 
     except Exception as error:
         database.rollback()
-        raise HTTPException(status_code= 400, detail=f"Tenemos un problema{error}")
+        raise HTTPException(status_code= 400, detail=f"Tenemos un problema {error}")
     
 @rutas.get("/usuario", response_model= List[UsuarioDTORespuesta], summary= "Buscar todos los usuarios en BD")    
 def buscarUsuario(database: Session = Depends(conectarConBD)):
