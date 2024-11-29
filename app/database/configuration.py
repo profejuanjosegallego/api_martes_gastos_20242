@@ -1,7 +1,6 @@
-from sqlalchemy import create_engine,event
+from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.engine import Engine
-
 
 #datos para la conexion a BD
 
@@ -14,9 +13,10 @@ server="localhost"
 #creando la conexion
 dataBaseConnection=f"mysql+mysqlconnector://{userName}:{userPassword}@{server}:{connectionPort}/{dataBaseName}"
 
-#creo el motor de conexion
-engine=create_engine(dataBaseConnection)
+#Creo motor de conexion
+Engine = create_engine(dataBaseConnection)
 
-#abrir la sesion con la bd
-SessionLocal=sessionmaker(autocommit=False, autoflush=False, bind=engine)
+#Abrir la sesion con la base de datos
+sessionLocal = sessionmaker(autocommit = False, autoflush = False, bind = Engine)
+
 
